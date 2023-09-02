@@ -1,27 +1,11 @@
 <?php
 
-$conf = mysqli_connect('localhost', 'root', '', 'eskul');
+    require 'database.php';
 
-$input = $_POST;
-$gambar = $input['gambar'];
-$judul = $input['judul'];
-$genre = $input['genre'];
-$rate = $input['rate'];
-$id = $input['no'] ?? 0;
+// $conf = mysqli_connect('localhost', 'root', '', 'eskul');
 
-if ($id !== 0){
-    $query = "UPDATE film set gambar='$gambar',judul='$judul',genre='$genre',rate='$rate' WHERE no='$id'";
-}else{
-    $query = "INSERT INTO film (gambar,judul,genre,rate) VALUES ('$gambar', '$judul', '$genre', '$rate')";
-}
-    if($query){
-        echo "aman";
-    }else{
-        echo "bau";
-    }
-$datas = mysqli_query($conf, $query);
-if ($datas) {
-    header ('location:film.php');
-}
+$db = new database('localhost', 'root', '', 'eskul');
+
+$db->editfilm();
 
 ?>
